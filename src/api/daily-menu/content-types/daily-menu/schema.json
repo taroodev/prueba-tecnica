@@ -32,9 +32,14 @@
     },
     "price": {
       "type": "decimal",
-      "required": true
+      "required": true,
+      "min": 0
     },
     "sumPrice": {
+      "type": "decimal",
+      "min": 0
+    },
+    "sumPriceIva": {
       "type": "decimal"
     }
   }
