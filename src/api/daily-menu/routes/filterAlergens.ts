@@ -9,5 +9,17 @@ export default {
     middlewares: [],
     },
     },
+
+
+ 
+      {
+        method: 'GET',
+        path: '/menus/Alergenos',
+        handler: 'daily-menu.getMenusWithoutAllergens',
+        config: {
+            policies: [],
+            middlewares: [],
+            },
+      },
     ]
 }
