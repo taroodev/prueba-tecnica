@@ -1,13 +1,31 @@
 
-##Obtener solo los postres dentro de los menús 
 
-http://localhost:1337/api/daily-menus?[fields][0]=Price&[populate][Dessert]=true
+## Obtener solo los postres dentro de los menús
 
-#Filtrar menús por rango de precios (GET /menus?min_precio=10&max_precio=15).
-http://localhost:1337/api/daily-menus?filters[Price][$gte]=10&filters[Price][$lte]=15
+```
+http://localhost:1337/api/daily-menus?[fields][0]=sumPrice&[populate][dessert_dish]=true
+```
 
-#firtrar por alergenos 
+---
+
+## Filtrar menús por rango de precios (GET /menus?min_precio=10&max_precio=15)
+
+```
+http://localhost:1337/api/daily-menus?filters[sumPrice][$gte]=10&filters[sumPrice][$lte]=15
+```
+
+---
+
+## Filtrar por alérgenos
+
+```
 http://localhost:1337/api/menus/Alergenos?allergens=queso&allergens=Lactosa
+```
 
-#mas populares 
+---
+
+## Obtener los platos más populares
+
+```
 http://localhost:1337/api/platos/populares
+```

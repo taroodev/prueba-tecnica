@@ -6,7 +6,6 @@ export default factories.createCoreController(UIDMODEL, ({ strapi }) => ({
  
   async moreSales(ctx) {
     
-
     try {
 
       const collections = await strapi.documents(UIDMODEL).findMany({
@@ -54,12 +53,6 @@ for (let i = 0; i < collections.length; i++) {
       ctx.throw("Not found Dishes :", error);
     }
   },
-
-
-
-
-
-
 
 
 
@@ -123,7 +116,5 @@ for (let i = 0; i < collections.length; i++) {
       return ctx.badRequest('Error al procesar la solicitud: ' + error.message);
     }
   }
-
-
 }));
 
