@@ -11,7 +11,7 @@ http://localhost:1337/api/daily-menus?[fields][0]=sumPrice&[populate][dessert_di
 ## Filtrar menús por rango de precios (GET /menus?min_precio=10&max_precio=15)
 
 ```
-http://localhost:1337/api/daily-menus?filters[sumPrice][$gte]=10&filters[sumPrice][$lte]=15
+http://localhost:1337/api/daily-menus?filters[price][$gte]=10&filters[price][$lte]=15
 ```
 
 ---
