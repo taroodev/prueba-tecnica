@@ -13,7 +13,7 @@ export default factories.createCoreService('api::daily-menu.daily-menu', ({ stra
         const secondDishId = extractId(data.second_dish);
         const dessertDishId = extractId(data.dessert_dish);
         
-        console.log("IDs extraídos:", { firstDishId, secondDishId, dessertDishId });
+        
       
         const getDishPrice = async (dishId) => {
           if (!dishId) return 0;
@@ -35,7 +35,7 @@ export default factories.createCoreService('api::daily-menu.daily-menu', ({ stra
         valor3 = await getDishPrice(dessertDishId);
       
         const total = valor1 + valor2 + valor3;
-        console.log("Valores calculados:", { valor1, valor2, valor3, total });
+        
       
         return total;
       }
