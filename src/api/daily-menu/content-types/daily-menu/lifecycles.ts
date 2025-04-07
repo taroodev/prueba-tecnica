@@ -2,59 +2,64 @@ const { errors } = require('@strapi/utils');
 const { ApplicationError } = errors;
 
 module.exports = {
+  
  
   async afterCreate(event) {
+    const apiURL='api::daily-menu.daily-menu';
+
     if (event.state?.isCalculatedUpdate) return;
 
     const { result } = event;
-    const menu = await strapi.entityService.findOne('api::daily-menu.daily-menu', result.id, {
+    const menu = await strapi.entityService.findOne(apiURL, result.id, {
       populate: ['first_dish', 'second_dish', 'dessert_dish'],
     });
 
     const { sumPrice, sumPriceIva } = menu;
 
     const calculatedPrice = await strapi.service('api::daily-menu.calculate-price').calculateSumPrecio(menu);
-    const calculatedIva = await strapi.service('api::daily-menu.daily-menu').pricePlusIva(calculatedPrice);
+    const calculatedIva = await strapi.service(apiURL).pricePlusIva(calculatedPrice);
 
     const currentPrice = sumPrice ?? 0;
     const currentIva = typeof sumPriceIva === "number" ? sumPriceIva : parseFloat(sumPriceIva) || 0;
 
     if (currentPrice !== calculatedPrice) {
-      await strapi.entityService.update('api::daily-menu.daily-menu', result.id, {
+      await strapi.entityService.update(apiURL, result.id, {
         data: { sumPrice: calculatedPrice },
       });
     }
 
     if (currentIva !== calculatedIva) {
-      await strapi.entityService.update('api::daily-menu.daily-menu', result.id, {
+      await strapi.entityService.update(apiURL, result.id, {
         data: { sumPriceIva: calculatedIva },
       });
     }
   },
   async afterUpdate(event) {
+
+    const apiURL='api::daily-menu.daily-menu';
     if (event.state?.isCalculatedUpdate) return;
 
     const { result } = event;
-    const menu = await strapi.entityService.findOne('api::daily-menu.daily-menu', result.id, {
+    const menu = await strapi.entityService.findOne(apiURL, result.id, {
       populate: ['first_dish', 'second_dish', 'dessert_dish'],
     });
 
     const { sumPrice, sumPriceIva } = menu;
 
     const calculatedPrice = await strapi.service('api::daily-menu.calculate-price').calculateSumPrecio(menu);
-    const calculatedIva = await strapi.service('api::daily-menu.daily-menu').pricePlusIva(calculatedPrice);
+    const calculatedIva = await strapi.service(apiURL).pricePlusIva(calculatedPrice);
 
     const currentPrice = sumPrice ?? 0;
     const currentIva = typeof sumPriceIva === "number" ? sumPriceIva : parseFloat(sumPriceIva) || 0;
 
     if (currentPrice !== calculatedPrice) {
-      await strapi.entityService.update('api::daily-menu.daily-menu', result.id, {
+      await strapi.entityService.update(apiURL, result.id, {
         data: { sumPrice: calculatedPrice },
       });
     }
 
     if (currentIva !== calculatedIva) {
-      await strapi.entityService.update('api::daily-menu.daily-menu', result.id, {
+      await strapi.entityService.update(apiURL, result.id, {
         data: { sumPriceIva: calculatedIva },
       });
     }
