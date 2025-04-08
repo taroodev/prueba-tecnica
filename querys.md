@@ -3,7 +3,7 @@
 ## Obtener solo los postres dentro de los menús
 
 ```
-http://localhost:1337/api/daily-menus?[fields][0]=sumPrice&[populate][dessert_dish]=true
+http://localhost:1337/api/daily-menus?[fields][0]=day&populate[dessert_dish]=true
 ```
 
 ---
@@ -16,7 +16,7 @@ http://localhost:1337/api/daily-menus?filters[price][$gte]=10&filters[price][$lt
 
 ---
 
-## Filtrar por alérgenos
+## Filtrar por alérgenos 
 
 ```
 http://localhost:1337/api/menus/Alergenos?allergens=queso&allergens=Lactosa
